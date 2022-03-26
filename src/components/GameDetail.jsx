@@ -1,27 +1,27 @@
 import React from "react";
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
-import playstation from '../img/playstation.svg';
-import steam from '../img/steam.svg';
-import xbox from '../img/xbox.svg';
-import nintendo from '../img/nintendo.svg';
-import apple from '../img/apple.svg';
-import gamepad from '../img/gamepad.svg';
-import starEmpty from '../img/star-empty.png';
-import starFull from '../img/star-full.png';
+import playstation from "../img/playstation.svg";
+import steam from "../img/steam.svg";
+import xbox from "../img/xbox.svg";
+import nintendo from "../img/nintendo.svg";
+import apple from "../img/apple.svg";
+import gamepad from "../img/gamepad.svg";
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
 
 const GameDetail = ({ gameId }) => {
-  const { screen, game, isLoading } = useSelector(state => state.detail);
+  const { screen, game, isLoading } = useSelector((state) => state.detail);
   const navigate = useNavigate();
 
   const exitDetailHandler = (e) => {
     const element = e.target;
-    if (element.classList.contains('shadow')) {
-      document.body.style.overflow = 'auto';
-      navigate('/');
+    if (element.classList.contains("shadow")) {
+      document.body.style.overflow = "auto";
+      navigate("/");
     }
   };
 
@@ -29,7 +29,9 @@ const GameDetail = ({ gameId }) => {
     let stars = [];
     const rating = Math.floor(game.rating);
     for (let i = 1; i <= 5; i++) {
-      stars.push(<img alt="star" key={i} src={i <= rating ? starFull : starEmpty} />);
+      stars.push(
+        <img alt="star" key={i} src={i <= rating ? starFull : starEmpty} />
+      );
     }
     return stars;
   };
@@ -48,51 +50,57 @@ const GameDetail = ({ gameId }) => {
     } else {
       return gamepad;
     }
-  }
+  };
   return (
     <>
-      {!isLoading && <CardShadow className="shadow" onClick={exitDetailHandler}>
-        <Detail layoutId={Number(gameId)}>
-          <Stats>
-            <div className="rating">
-              <motion.h3 layoutId={`title ${gameId}`}>{game.name}</motion.h3>
-              <p>Rating: {game.rating}</p>
-              {getStars()}
-            </div>
-            <Info>
-              <h3>Platforms</h3>
-              <Platforms>
-                {game?.platforms?.map(data => (
-                  <img
-                    key={data.platform.id}
-                    src={getPlatform(data.platform.name)}
-                    alt={data.platform.name}
-                    title={data.platform.name}
-                  />
-                ))}
-              </Platforms>
-            </Info>
-          </Stats>
-          <Media>
-            <motion.img layoutId={`image ${gameId}`} src={smallImage(game.background_image, 1280)} alt={game.name} />
-          </Media>
-          <Description>
-            <p>{game.description_raw}</p>
-          </Description>
-          <div className="gallery">
-            {screen?.results?.map(screenshot => (
-              <img
-                key={screenshot.id}
-                src={smallImage(screenshot.image, 1280)}
+      {!isLoading && (
+        <CardShadow className="shadow" onClick={exitDetailHandler}>
+          <Detail layoutId={Number(gameId)}>
+            <Stats>
+              <div className="rating">
+                <motion.h3 layoutId={`title ${gameId}`}>{game.name}</motion.h3>
+                <p>Rating: {game.rating}</p>
+                {getStars()}
+              </div>
+              <Info>
+                <h3>Platforms</h3>
+                <Platforms>
+                  {game?.platforms?.map((data) => (
+                    <img
+                      key={data.platform.id}
+                      src={getPlatform(data.platform.name)}
+                      alt={data.platform.name}
+                      title={data.platform.name}
+                    />
+                  ))}
+                </Platforms>
+              </Info>
+            </Stats>
+            <Media>
+              <motion.img
+                layoutId={`image ${gameId}`}
+                src={smallImage(game.background_image, 1280)}
                 alt={game.name}
               />
-            ))}
-          </div>
-        </Detail>
-      </CardShadow>}
+            </Media>
+            <Description>
+              <p>{game.description_raw}</p>
+            </Description>
+            <div className="gallery">
+              {screen?.results?.map((screenshot) => (
+                <img
+                  key={screenshot.id}
+                  src={smallImage(screenshot.image, 1280)}
+                  alt={game.name}
+                />
+              ))}
+            </div>
+          </Detail>
+        </CardShadow>
+      )}
     </>
   );
-}
+};
 
 const CardShadow = styled(motion.div)`
   width: 100%;
