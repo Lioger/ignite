@@ -1,9 +1,8 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom'; 
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import GlobalStyles from './components/GlobalStyles';
-import Nav from './components/Nav';
-
+import GlobalStyles from "./components/GlobalStyles";
+import Nav from "./components/Nav";
 
 function App() {
   return (
@@ -11,10 +10,17 @@ function App() {
       <GlobalStyles />
       <Nav />
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/game/:id" element={<Home />} />
+        <Route
+          exact
+          path="https://lioger.github.io/ignite/"
+          element={<Home />}
+        />
+        <Route
+          exact
+          path="https://lioger.github.io/ignite/game/:id"
+          element={<Home />}
+        />
       </Routes>
-
     </div>
   );
 }
