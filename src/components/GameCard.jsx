@@ -20,7 +20,7 @@ const GameCard = ({ name, released, image, id }) => {
       initial="hidden"
       animate="show"
     >
-      <Link to={`/game/${id}`}>
+      <Link to={`/ignite/game/${id}`}>
         <motion.h3 layoutId={`title ${id}`}>{name}</motion.h3>
         <p>{released}</p>
         <motion.img
