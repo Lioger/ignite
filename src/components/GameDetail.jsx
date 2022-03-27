@@ -131,6 +131,15 @@ const Detail = styled(motion.div)`
   left: 10%;
   color: black;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  @media screen and (max-width: 768px) {
+    gap: 3rem;
+  }
+  @media screen and (max-width: 421px) {
+    gap: 1.5rem;
+  }
   img {
     width: 100%;
   }
@@ -140,6 +149,16 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  @media screen and (max-width: 421px) {
+    justify-content: center;
+  }
+  .rating {
+    @media screen and (max-width: 421px) {
+      text-align: center;
+    }
+  }
   img {
     width: 1.5rem;
     height: 1.5rem;
@@ -163,14 +182,22 @@ const Platforms = styled(motion.div)`
 `;
 
 const Media = styled(motion.div)`
-  margin-top: 5rem;
   img {
     width: 100%;
   }
 `;
 
 const Description = styled(motion.div)`
-  margin: 5rem 0;
+  @media screen and (max-width: 421px) {
+    p {
+      font-size: 1rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    p {
+      font-size: 1.1rem;
+    }
+  }
 `;
 
 export default GameDetail;
