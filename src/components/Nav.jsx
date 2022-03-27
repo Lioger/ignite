@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { motion } from 'framer-motion';
-import styled from 'styled-components';
-import logo from '../img/logo.svg';
-import { fetchSearch } from '../actions/gamesAction';
-import { fadeIn } from '../animations.js';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+import styled from "styled-components";
+import logo from "../img/logo.svg";
+import { fetchSearch } from "../actions/gamesAction";
+import { fadeIn } from "../animations.js";
 
 const Nav = () => {
   const dispatch = useDispatch();
-  const [textInput, setTextInput] = useState('');
+  const [textInput, setTextInput] = useState("");
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchSearch(textInput));
-    setTextInput('');
+    setTextInput("");
   };
   const clearSearched = () => {
-    dispatch({ type: 'CLEAR_SEARCHED' });
-  }
+    dispatch({ type: "CLEAR_SEARCHED" });
+  };
   return (
     <StyledNav variants={fadeIn} initial="hidden" animate="show">
       <Logo onClick={clearSearched}>
@@ -38,14 +38,38 @@ const Nav = () => {
 const StyledNav = styled(motion.nav)`
   padding: 3rem 5rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  @media screen and (max-width: 768px) {
+    padding: 2rem 2rem 1rem;
+  }
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
   input {
-    width: 30%;
+    width: 40%;
     font-size: 1.5rem;
     padding: 0.5rem;
     border: none;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
     outline: none;
-    margin-right: 1rem;
+
+    @media screen and (max-width: 991px) {
+      width: 60%;
+    }
+    @media screen and (max-width: 768px) {
+      width: 70%;
+      font-size: 1.2rem;
+    }
+    @media screen and (max-width: 425px) {
+      width: 100%;
+    }
   }
   button {
     font-size: 1.5rem;
@@ -55,11 +79,15 @@ const StyledNav = styled(motion.nav)`
     cursor: pointer;
     background-color: #ff7676;
     color: white;
+
+    @media screen and (max-width: 991px) {
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+    }
   }
 `;
 
 const Logo = styled(motion.div)`
-  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
