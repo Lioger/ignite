@@ -1,5 +1,5 @@
 export const base_url = 'https://api.rawg.io/api';
-const key=`key=${process.env.REACT_APP_RAWG_API_KEY}`;
+const key=`key=5c7b95a9bd884161b0a44ad796317c60`;
 
 const currentDate = new Date().toISOString().slice(0, 10);
 const lastYear = new Date().getFullYear() - 1;
