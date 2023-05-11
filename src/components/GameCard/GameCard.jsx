@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { loadDetail } from "../actions/detailAction";
-import { smallImage } from "../util";
-import { popup } from "../animations";
+import { loadDetail } from "../../actions/detailAction";
+import { smallImage } from "../../util";
+import { popup } from "../../animations";
+import { StyledGame } from "./styles";
 
 const GameCard = ({ name, released, image, id }) => {
   const dispatch = useDispatch();
@@ -32,19 +32,5 @@ const GameCard = ({ name, released, image, id }) => {
     </StyledGame>
   );
 };
-
-const StyledGame = styled(motion.div)`
-  overflow: hidden;
-  min-height: 30vh;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  border-radius: 1rem;
-  cursor: pointer;
-  img {
-    width: 100%;
-    height: 40vh;
-    object-fit: cover;
-  }
-`;
 
 export default GameCard;
